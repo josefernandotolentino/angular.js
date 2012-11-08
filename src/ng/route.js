@@ -377,6 +377,9 @@ function $RouteProvider(){
               });
               if (isDefined(template = next.template)) {
               } else if (isDefined(template = next.templateUrl)) {
+            	var intp = $injector.get('$interpolate');
+            	var expr = intp(template); 
+            	template = expr(next.params);
                 template = $http.get(template, {cache: $templateCache}).
                     then(function(response) { return response.data; });
               }
